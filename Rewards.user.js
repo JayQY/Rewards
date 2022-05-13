@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Rewards
 // @namespace    https://github.com/JayQY/Rewards
-// @updateURL    https://github.com/JayQY/Rewards/blob/main/Rewards.user.js
-// @downloadURL  https://github.com/JayQY/Rewards/blob/main/Rewards.user.js
+// @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
+// @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @version      1.0.0
 // @description  Microsoft Rewards
 // @author       JayQY
