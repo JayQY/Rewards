@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.11
+// @version      1.0.12
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -22,16 +22,7 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
 
 (function () {
     'use strict';
-
-    /* //休眠
-    sleep(1)
-        //首页
-        .then(() => obsPage('rewards.bing.com'))
-        //休眠
-        .then(() => sleep(1))
-        //监测存在元素然后点击
-        .then(() => obsClick('mee-card')); */
-
+    
     runToday0();
 
     for (var i = 0, j = 60; i < j; i++) {
@@ -43,7 +34,15 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
     }
 
     function runToday0() {
-        GM_xmlhttpRequest({
+        //休眠
+        sleep(1)
+            //监测存在元素然后点击
+            .then(() => obsClick('mee-card a'));
+
+        //var el = document.querySelectorAll('mee-card')[0].querySelectorAll('a')[0];
+        //el.click();
+
+        /* GM_xmlhttpRequest({
             method: "GET",
             url: "https://rewards.bing.com/api/getuserinfo",
             headers: { "User-Agent": edgeUserAgent },
@@ -54,10 +53,10 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
                 console.log(today);
                 var p = JSON.parse(res.responseText);
                 var destination = p.dashboard.dailySetPromotions[today][0].attributes.destination;
-                GM_openInTab(destination,{insert : true});
+                GM_openInTab(destination,{active: true, insert : true});
                 console.log(destination);
                 console.log('dailySetPromotions: end');
-               /*  GM_xmlhttpRequest({
+                GM_xmlhttpRequest({
                     method: "GET",
                     url: destination,
                     headers: { "User-Agent": edgeUserAgent },
@@ -68,9 +67,9 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
                         //var max = p.dashboard.dailySetPromotions[today][0].attributes.max;
                         //console.log('('+ progress + '/' + max + ')');
                     }
-                }); */
+                });
             }
-        });
+        }); */
     }
 
     /**
