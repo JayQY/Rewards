@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.2
+// @version      1.0.3
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -30,6 +30,10 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
         }else{
             setTimeout(() => ret1(wordlists[Math.floor(Math.random()*(2048+1))],autoRefresh), 5000 * i)
         }
+
+        if(i+1<j){
+            console.log('Complete!');
+        }
     }
 
     function runToday0(){
@@ -38,20 +42,21 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
             url: "https://rewards.bing.com/api/getuserinfo",
             headers: {"User-Agent": edgeUserAgent},
             onload: function(res) {
-                console.log('dailySetPromotions: ');
+                console.log('dailySetPromotions: begin');
                 var d = new Date();
                 var today = months[d.getMonth()] + '/' + days[d.getDate()] + '/' + d.getFullYear();
                 console.log(today);
-                var p = JSON.parse(res.responseText);
-                var destination = p.dashboard.dailySetPromotions[today][0].attributes.destination;
+                //var p = JSON.parse(res.responseText);
+                //var destination = p.dashboard.dailySetPromotions[today][0].attributes.destination;
                 GM_xmlhttpRequest({
                     method: "GET",
                     url: destination,
                     headers: {"User-Agent": edgeUserAgent},
                     onload: function() {
-                        var progress = p.dashboard.dailySetPromotions[today][0].attributes.progress;
-                        var max = p.dashboard.dailySetPromotions[today][0].attributes.max;
-                        console.log('('+ progress + '/' + max + ')');
+                        console.log('dailySetPromotions: end');
+                        //var progress = p.dashboard.dailySetPromotions[today][0].attributes.progress;
+                        //var max = p.dashboard.dailySetPromotions[today][0].attributes.max;
+                        //console.log('('+ progress + '/' + max + ')');
                     }
                 });
             }
@@ -65,7 +70,7 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
             headers: {"User-Agent": edgeUserAgent},
             onload: function(res) {
                 console.log('PC search: ' + temp);
-                if (autoRefresh == true){
+                /* if (autoRefresh == true){
                     GM_xmlhttpRequest({
                         method: "GET",
                         url: "https://rewards.bing.com/api/getuserinfo",
@@ -75,7 +80,7 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
                             console.log('('+ p.dashboard.userStatus.counters.pcSearch[0].attributes.progress + '/' + p.dashboard.userStatus.counters.pcSearch[0].attributes.max + ')');
                         }
                     });
-                }
+                } */
             }
         });
     }
@@ -87,7 +92,7 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
             headers: {"User-Agent": mobileUserAgent},
             onload: function(res) {
                 console.log('Mobile search: ' + temp);
-                if (autoRefresh == true){
+                /* if (autoRefresh == true){
                     GM_xmlhttpRequest({
                         method: "GET",
                         url: "https://rewards.bing.com/api/getuserinfo",
@@ -97,7 +102,7 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
                             console.log('('+ p.dashboard.userStatus.counters.mobileSearch[0].attributes.progress + '/' + p.dashboard.userStatus.counters.mobileSearch[0].attributes.max + ')');
                         }
                     });
-                }
+                } */
             }
         });
     }
@@ -114,4 +119,3 @@ let time=43200000;
 setTimeout(() => {
     location.reload()
 },time);
-
