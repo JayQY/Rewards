@@ -3,13 +3,14 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.8
+// @version      1.0.9
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
 // @match        https://rewards.bing.com/pointsbreakdown
 // @icon         https://www.google.com/s2/favicons?domain=bing.com
 // @grant        GM_xmlhttpRequest
+// @grant        GM_openInTab
 // @connect      www.bing.com
 // @connect      rewards.bing.com
 // ==/UserScript==
@@ -57,7 +58,10 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
                 console.log(today);
                 var p = JSON.parse(res.responseText);
                 var destination = p.dashboard.dailySetPromotions[today][0].attributes.destination;
-                GM_xmlhttpRequest({
+                GM_openInTab(destination);
+                console.log(destination);
+                console.log('dailySetPromotions: end');
+               /*  GM_xmlhttpRequest({
                     method: "GET",
                     url: destination,
                     headers: { "User-Agent": edgeUserAgent },
@@ -68,7 +72,7 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
                         //var max = p.dashboard.dailySetPromotions[today][0].attributes.max;
                         //console.log('('+ progress + '/' + max + ')');
                     }
-                });
+                }); */
             }
         });
     }
