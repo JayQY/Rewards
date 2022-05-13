@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.5
+// @version      1.0.6
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -53,6 +53,7 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
                     url: destination,
                     headers: {"User-Agent": edgeUserAgent},
                     onload: function() {
+                        console.log(destination);
                         console.log('dailySetPromotions: end');
                         //var progress = p.dashboard.dailySetPromotions[today][0].attributes.progress;
                         //var max = p.dashboard.dailySetPromotions[today][0].attributes.max;
