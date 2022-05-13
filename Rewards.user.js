@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.3
+// @version      1.0.4
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -46,8 +46,8 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
                 var d = new Date();
                 var today = months[d.getMonth()] + '/' + days[d.getDate()] + '/' + d.getFullYear();
                 console.log(today);
-                //var p = JSON.parse(res.responseText);
-                //var destination = p.dashboard.dailySetPromotions[today][0].attributes.destination;
+                var p = JSON.parse(res.responseText);
+                var destination = p.dashboard.dailySetPromotions[today][0].attributes.destination;
                 GM_xmlhttpRequest({
                     method: "GET",
                     url: destination,
