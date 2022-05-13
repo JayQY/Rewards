@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.4
+// @version      1.0.5
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -31,7 +31,7 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
             setTimeout(() => ret1(wordlists[Math.floor(Math.random()*(2048+1))],autoRefresh), 5000 * i)
         }
 
-        if(i+1<j){
+        if(i+1==j){
             console.log('Complete!');
         }
     }
