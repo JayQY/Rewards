@@ -3,10 +3,10 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.1
+// @version      1.0.2
 // @description  Microsoft Rewards
 // @author       JayQY
-// @match        https://rewards.microsoft.com/
+// @match        https://rewards.bing.com/
 // @match        https://rewards.bing.com/pointsbreakdown
 // @icon         https://www.google.com/s2/favicons?domain=bing.com
 // @grant        GM_xmlhttpRequest
