@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.7
+// @version      1.0.8
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -22,14 +22,16 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
 (function () {
     'use strict';
 
-    //休眠
+    /* //休眠
     sleep(1)
         //首页
         .then(() => obsPage('rewards.bing.com'))
         //休眠
         .then(() => sleep(1))
         //监测存在元素然后点击
-        .then(() => obsClick('mee-card'));
+        .then(() => obsClick('mee-card')); */
+
+    runToday0();
 
     for (var i = 0, j = 60; i < j; i++) {
         if (i > 45 || i % 2 == 0) {
