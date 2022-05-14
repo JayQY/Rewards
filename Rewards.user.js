@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.12
+// @version      1.0.13
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -22,7 +22,7 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
 
 (function () {
     'use strict';
-    
+
     runToday0();
 
     for (var i = 0, j = 60; i < j; i++) {
@@ -34,13 +34,10 @@ var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) Ap
     }
 
     function runToday0() {
-        //休眠
-        sleep(1)
-            //监测存在元素然后点击
-            .then(() => obsClick('mee-card a'));
+        
+        //sleep(1).then(() => obsClick('mee-card a'));
 
-        //var el = document.querySelectorAll('mee-card')[0].querySelectorAll('a')[0];
-        //el.click();
+        document.querySelectorAll('mee-card')[0].querySelectorAll('a')[0].click();
 
         /* GM_xmlhttpRequest({
             method: "GET",
