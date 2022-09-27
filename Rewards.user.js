@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.15
+// @version      1.0.16
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -31,7 +31,7 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
         runToday0();
 
         for (var i = 0, j = 60; i < j; i++) {
-            if (i > 45 || i % 2 == 0) {
+            if (i % 2 == 0) {
                 setTimeout(() => ret0(wordlists[Math.floor(Math.random() * (2048 + 1))], autoRefresh), 5000 * i)
             } else {
                 setTimeout(() => ret1(wordlists[Math.floor(Math.random() * (2048 + 1))], autoRefresh), 5000 * i)
