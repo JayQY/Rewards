@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.19
+// @version      1.0.20
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -141,6 +141,13 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
             setTimeout(() => {
                 var m = randomNum(0, 1);
                 $('.btoption').eq(m).click();
+            }, clickTimeout);
+        }
+
+        if ($('.btOption.b_cards').length > 0) {
+            setTimeout(() => {
+                var m = randomNum(0, 1);
+                $('.btOption.b_cards').eq(m).click();
             }, clickTimeout);
         }
 
