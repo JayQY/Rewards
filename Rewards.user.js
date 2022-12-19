@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.22
+// @version      1.0.23
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -17,7 +17,7 @@
 // ==/UserScript==
 
 this.$ = this.jQuery = jQuery.noConflict(true);
-var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self == top ? self : _self.parent, clickTimeout = 5000;
+var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self == top ? self : _self.parent, clickTimeout = 5000, pcSearchCount = 36, searchCount = 60;
 
 (function () {
     'use strict';
@@ -30,20 +30,20 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
 
         runToday0();
 
-        for(var i = 0; i < 60; i++){
-            if(i < 36){
-                setTimeout(() => ret0(wordlists[Math.floor(Math.random() * (2048 + 1))], autoRefresh), 5000 * i);
+        for(var i = 0; i < searchCount; i++){
+            if(i < pcSearchCount){
+                setTimeout(() => ret0(wordlists[Math.floor(Math.random() * (2048 + 1))], autoRefresh), clickTimeout * i);
             }else{
-                setTimeout(() => ret1(wordlists[Math.floor(Math.random() * (2048 + 1))], autoRefresh), 5000 * i);
+                setTimeout(() => ret1(wordlists[Math.floor(Math.random() * (2048 + 1))], autoRefresh), clickTimeout * i);
             }
         }
 
         function runToday0() {
             //document.querySelectorAll('mee-card')[0].querySelectorAll('a')[0].click();
             var list = document.querySelectorAll('a.ds-card-sec');
-            var l = 1;
+            var l = 1, listCount = list.length;
             list.forEach(item => {
-                if (l <= list.length) {
+                if (l <= listCount) {
                     if (!$(item).find('span.mee-icon').hasClass('mee-icon-SkypeCircleCheck')) {
                         setTimeout(() => {
                             item.click();
@@ -56,7 +56,12 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
                 if($('#modal-host div.actionLink a').length > 0){
                     document.querySelector('#modal-host div.actionLink a').click();
                 }
-            }, clickTimeout * list.length);
+            }, clickTimeout * listCount);
+
+            var maxCount = searchCount > listCount ? searchCount : listCount;
+            setTimeout(() => {
+                window.open('https://rewards.bing.com/redeem');
+            }, clickTimeout * (maxCount+5));
         }
 
         function ret0(temp, autoRefresh) {
