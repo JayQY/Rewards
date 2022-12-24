@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.24
+// @version      1.0.25
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -188,6 +188,9 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
             }
             if(document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.game-panel-button") && document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.game-panel-button").length > 0){
                 document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelector("div.shopping-game-pane-container button.game-panel-button").click();
+            }
+            if(document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.play-again") && document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.play-again").length > 0){
+                document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelector("div.shopping-game-pane-container button.play-again").click();
             }
             if(clickCount == 10){
                 clearInterval(sId);
