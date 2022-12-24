@@ -3,11 +3,13 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.23
+// @version      1.0.24
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
 // @match        *://www.bing.com/*
+// @match        *://www.msn.com/en-us/shopping
+// @match        *://www.msn.cn/en-us/shopping
 // @icon         https://www.google.com/s2/favicons?domain=bing.com
 // @require      https://code.jquery.com/jquery-3.3.1.min.js
 // @grant        GM_xmlhttpRequest
@@ -17,7 +19,7 @@
 // ==/UserScript==
 
 this.$ = this.jQuery = jQuery.noConflict(true);
-var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self == top ? self : _self.parent, clickTimeout = 5000, pcSearchCount = 36, searchCount = 60;
+var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self == top ? self : _self.parent, clickTimeout = 5000;
 
 (function () {
     'use strict';
@@ -27,7 +29,9 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
         var autoRefresh = true;
         var edgeUserAgent = window.navigator.userAgent;
         var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1";
+        var pcSearchCount = 36, searchCount = 60;
 
+        GM_openInTab('https://www.msn.com/en-us/shopping', {active: true, setParent: true});
         runToday0();
 
         for(var i = 0; i < searchCount; i++){
@@ -60,7 +64,7 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
 
             var maxCount = searchCount > listCount ? searchCount : listCount;
             setTimeout(() => {
-                window.open('https://rewards.bing.com/redeem');
+                GM_openInTab('https://rewards.bing.com/redeem', {active: true, setParent: true});
             }, clickTimeout * (maxCount+5));
         }
 
@@ -172,19 +176,36 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
                 $(".rqOption").click();
             }, clickTimeout);
         }
+    }
 
-        function randomNum(minNum, maxNum) {
-            switch (arguments.length) {
-                case 1:
-                    return parseInt(Math.random() * minNum + 1, 10);
-                    break;
-                case 2:
-                    return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
-                    break;
-                default:
-                    return 0;
-                    break;
+    if (window.location.href.indexOf("www.msn.com/en-us/shopping") != -1 || window.location.href.indexOf("www.msn.cn/en-us/shopping") != -1) {
+        var clickCount = 0;
+        var sId = setInterval(() => {
+            if(document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button") && document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button").length > 0){
+                var m = randomNum(0, document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button").length-1);
+                document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button")[m].click();
+                clickCount++;
             }
+            if(document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.game-panel-button") && document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.game-panel-button").length > 0){
+                document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelector("div.shopping-game-pane-container button.game-panel-button").click();
+            }
+            if(clickCount == 10){
+                clearInterval(sId);
+            }
+        }, clickTimeout * 2);
+    }
+
+    function randomNum(minNum, maxNum) {
+        switch (arguments.length) {
+            case 1:
+                return parseInt(Math.random() * minNum + 1, 10);
+                break;
+            case 2:
+                return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+                break;
+            default:
+                return 0;
+                break;
         }
     }
 
