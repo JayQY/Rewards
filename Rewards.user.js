@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.27
+// @version      1.0.28
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -31,7 +31,7 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
         var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1";
         var pcSearchCount = 36, searchCount = 60;
 
-        GM_openInTab('https://www.msn.cn/en-us/shopping', {active: true, setParent: true});
+        GM_openInTab('https://www.msn.com/en-us/shopping', {active: true, setParent: true});
         runToday0();
 
         for(var i = 0; i < searchCount; i++){
