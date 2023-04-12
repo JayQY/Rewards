@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.29
+// @version      1.0.30
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -32,7 +32,7 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
         var pcSearchCount = 36, searchCount = 60;
 
         GM_openInTab('https://www.msn.com/en-us/shopping', {active: true, setParent: true});
-        setTimout(() => runToday0(), clickTimeout * 4);
+        setTimeout(() => runToday0(), clickTimeout * 4);
 
         for(var i = 0; i < searchCount; i++){
             if(i < pcSearchCount){
