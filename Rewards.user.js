@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.32
+// @version      1.0.33
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -149,7 +149,7 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
             }, clickTimeout);
         }
 
-        if(document.querySelector("div.wk_buttons input[type=submit]").length > 0){
+        if(document.querySelector("div.wk_buttons input[type=submit]") != undefined){
             document.querySelector("div.wk_buttons input[type=submit]").click();
         }
     }
