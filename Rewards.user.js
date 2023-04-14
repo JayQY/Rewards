@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.30
+// @version      1.0.31
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -28,11 +28,10 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
     if (window.location.href.indexOf("rewards.bing.com") != -1) {
         var autoRefresh = true;
         var edgeUserAgent = window.navigator.userAgent;
-        var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_8 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1";
+        var mobileUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 16_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) EdgiOS/111.0.1661.62 Version/16.0 Mobile/15E148 Safari/604.1";
         var pcSearchCount = 36, searchCount = 60;
 
-        GM_openInTab('https://www.msn.com/en-us/shopping', {active: true, setParent: true});
-        setTimeout(() => runToday0(), clickTimeout * 4);
+        runToday0();
 
         for(var i = 0; i < searchCount; i++){
             if(i < pcSearchCount){
@@ -61,10 +60,14 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
                 }
             }, clickTimeout * listCount);
 
+            setTimeout(() => {
+                GM_openInTab('https://www.msn.com/en-us/shopping', {active: true, setParent: true});
+            }, clickTimeout * (listCount + 1));
+
             var maxCount = searchCount > listCount ? searchCount : listCount;
             setTimeout(()=>{
                 window.focus();
-            }, clickTimeout * (maxCount+5));
+            }, clickTimeout * (maxCount + 6));
         }
 
         function ret0(temp, autoRefresh) {
