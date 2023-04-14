@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.31
+// @version      1.0.32
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -123,6 +123,13 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
             }, clickTimeout);
         }
 
+        if ($('.btOption').length > 0) {
+            setTimeout(() => {
+                var m = randomNum(0, 1);
+                $('.btOption').eq(m).click();
+            }, clickTimeout);
+        }
+        
         if ($('.btOption.b_cards').length > 0) {
             setTimeout(() => {
                 var m = randomNum(0, 1);
@@ -140,6 +147,10 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
             setInterval(() => {
                 $(".rqOption").click();
             }, clickTimeout);
+        }
+
+        if(document.querySelector("div.wk_buttons input[type=submit]").length > 0){
+            document.querySelector("div.wk_buttons input[type=submit]").click();
         }
     }
 
