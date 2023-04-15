@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.34
+// @version      1.0.35
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -161,7 +161,7 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
         try{
             var timer = setInterval(function(){
                 if($(document).scrollTop() < 5000){
-                    $(document).scrollTop($(document).scrollTop() + 100);
+                    $(document).scrollTop($(document).scrollTop() + 1000);
                 }
                 else{
                     clearInterval(timer);
@@ -183,7 +183,7 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
                         }
                     }, clickTimeout * 2);
                 }
-            },200);
+            },1000);
         }catch(e)
         { console.log(e); }
     }
