@@ -3,7 +3,7 @@
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/Rewards.user.js
-// @version      1.0.36
+// @version      1.0.37
 // @description  Microsoft Rewards
 // @author       JayQY
 // @match        https://rewards.bing.com/
@@ -33,10 +33,10 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
 
         runToday0();
 
-        for(var i = 0; i < searchCount; i++){
-            if(i < pcSearchCount){
+        for (var i = 0; i < searchCount; i++) {
+            if (i < pcSearchCount) {
                 setTimeout(() => ret0(wordlists[Math.floor(Math.random() * (2048 + 1))], autoRefresh), clickTimeout * i);
-            }else{
+            } else {
                 setTimeout(() => ret1(wordlists[Math.floor(Math.random() * (2048 + 1))], autoRefresh), clickTimeout * i);
             }
         }
@@ -55,17 +55,17 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
                 l++;
             });
             setTimeout(() => {
-                if($('#modal-host div.actionLink a').length > 0){
+                if ($('#modal-host div.actionLink a').length > 0) {
                     document.querySelector('#modal-host div.actionLink a').click();
                 }
             }, clickTimeout * listCount);
 
             setTimeout(() => {
-                GM_openInTab('https://www.msn.com/en-us/shopping', {active: true, setParent: true});
+                GM_openInTab('https://www.msn.com/en-us/shopping', { active: true, setParent: true });
             }, clickTimeout * (listCount + 1));
 
             var maxCount = searchCount > listCount ? searchCount : listCount;
-            setTimeout(()=>{
+            setTimeout(() => {
                 window.focus();
             }, clickTimeout * (maxCount + 6));
         }
@@ -129,7 +129,7 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
                 $('.btOption').eq(m).click();
             }, clickTimeout);
         }
-        
+
         if ($('.btOption.b_cards').length > 0) {
             setTimeout(() => {
                 var m = randomNum(0, 1);
@@ -149,35 +149,43 @@ var _self = unsafeWindow, url = location.pathname, top = _self, parent = _self =
             }, clickTimeout);
         }
 
-        if($("div.wk_buttons input[type=submit]").length > 0){
+        if ($("div.wk_buttons input[type=submit]").length > 0) {
             setTimeout(() => {
-              $("div.wk_buttons input[type=submit]").click();
-           }, clickTimeout);
-       }
+                $("div.wk_buttons input[type=submit]").click();
+            }, clickTimeout);
+        }
 
     }
 
     if (window.location.href.indexOf("www.msn.com/en-us/shopping") != -1 || window.location.href.indexOf("www.msn.cn/en-us/shopping") != -1) {
-        try{
-            var clickCount = 0;
-            var sId = setInterval(() => {
-                if(document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button") && document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button").length > 0){
-                    var m = randomNum(0, document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button").length-1);
-                    document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button")[m].click();
-                    ++clickCount;
+        try {
+            var timer = setInterval(function () {
+                if ($(document).scrollTop() < 5000) {
+                    $(document).scrollTop($(document).scrollTop() + 1000);
                 }
-                if(document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.game-panel-button") && document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.game-panel-button").length > 0){
-                    document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelector("div.shopping-game-pane-container button.game-panel-button").click();
+                else {
+                    clearInterval(timer);
+
+                    var clickCount = 0;
+                    var sId = setInterval(() => {
+                        if (document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button") && document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button").length > 0) {
+                            var m = randomNum(0, document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button").length - 1);
+                            document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("msn-shopping-card button.shopping-select-overlay-button")[m].click();
+                            ++clickCount;
+                        }
+                        if (document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.game-panel-button") && document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.game-panel-button").length > 0) {
+                            document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelector("div.shopping-game-pane-container button.game-panel-button").click();
+                        }
+                        if (document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.play-again") && document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.play-again").length > 0) {
+                            document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelector("div.shopping-game-pane-container button.play-again").click();
+                        }
+                        if (clickCount == 10) {
+                            clearInterval(sId);
+                        }
+                    }, clickTimeout * 2);
                 }
-                if(document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.play-again") && document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelectorAll("div.shopping-game-pane-container button.play-again").length > 0){
-                    document.querySelector("#root shopping-page-base").shadowRoot.querySelector("div.shopping-page-content > shopping-homepage").shadowRoot.querySelector("msft-feed-layout").shadowRoot.querySelector("msn-shopping-game-pane").shadowRoot.querySelector("div.shopping-game-pane-container button.play-again").click();
-                }
-                if(clickCount == 10){
-                    clearInterval(sId);
-                }
-            }, clickTimeout * 2);
-        }catch(e)
-        { console.log(e); }
+            }, 1000);
+        } catch (e) { console.log(e); }
     }
 
     function randomNum(minNum, maxNum) {
