@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Rewards
+// @name         NewRewards
 // @namespace    https://github.com/JayQY/Rewards
 // @updateURL    https://raw.githubusercontent.com/JayQY/Rewards/main/NewRewards.user.js
 // @downloadURL  https://raw.githubusercontent.com/JayQY/Rewards/main/NewRewards.user.js
